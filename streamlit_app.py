@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png",)
-st.image("img/SnapReviewIcon.png", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto", use_container_width=False, caption="Quick Google Review Summary")
+st.image("img/SnapReviewIcon.png", caption="Quick Google Review Summary", width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto", use_container_width=False)
 st.title("Snap Review")
 
 # Design move app further up and remove top padding
