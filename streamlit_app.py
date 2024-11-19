@@ -29,26 +29,6 @@ hide_streamlit_footer = """<style>#MainMenu {visibility: hidden;}
                         footer {visibility: hidden;}</style>"""
 st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 
-def switch_page(page_name: str):
-    from streamlit import _RerunData, _RerunException
-    from streamlit.source_util import get_pages
+from streamlit_extras.switch_page_button import switch_page
 
-    def standardize_name(name: str) -> str:
-        return name.lower().replace("_", " ")
-    
-    page_name = standardize_name(page_name)
-
-    pages = get_pages("streamlit_app.py")  # OR whatever your main page is called
-
-    for page_hash, config in pages.items():
-        if standardize_name(config["page_name"]) == page_name:
-            raise _RerunException(
-                _RerunData(
-                    page_script_hash=page_hash,
-                    page_name=page_name,
-                )
-            )
-
-    page_names = [standardize_name(config["page_name"]) for config in pages.values()]
-
-    raise ValueError(f"Could not find page {page_name}. Must be one of {page_names}")
+switch_page("pages/page2.py")
