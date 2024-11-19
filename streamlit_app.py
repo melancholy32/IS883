@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title('🎈 App Name')
+st.title('🎈Snap Reviewe')
 
-st.write('Hello world!')
+st.write('Quiick Google Review Summary')
 
