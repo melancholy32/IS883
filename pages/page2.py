@@ -14,7 +14,7 @@ st.write(
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 openai_api_key = st.text_input("OpenAI API Key", type="password")
 if not openai_api_key:
-    st.info("Please add your OpenAI API key to continue.", icon="🗝️")
+    st.info("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", icon="🗝️")
 else:
 
     # Create an OpenAI client.
