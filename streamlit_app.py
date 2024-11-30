@@ -1,7 +1,4 @@
-import openai
-import requests
 import streamlit as st
-import os
 
 # Page config
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
