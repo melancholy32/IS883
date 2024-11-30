@@ -7,3 +7,4 @@ trubrics>=1.4.3
 streamlit-feedback
 langchain-community
 streamlit-extras
+pip install streamlit-extras
