@@ -1,23 +1,33 @@
 import streamlit as st
+from openai import OpenAI
 
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png",)
 st.image("img/SnapReviewIcon.png", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto", use_container_width=False)
 st.title("Quick Google Review Summary")
 
-page=st.session_state
-'''if there is no page automatically calls main'''
-if "currentPage" not in page:
-    page["currentPage"]="main"
-if page["currentPage"]=="main":
-    st.header("You are at main page")
-    changePage=st.button("nextPage")
-    if changePage:
-        page["currentPage"]="secondPage"
-        st.experimental_rerun()
-if page["currentPage"]=="secondPage":
-    st.header("You are at Second page")
-    back=st.button("move back")
-    if back:
-        ''' moving to main page '''
-        page["currentPage"]="main"
-        st.experimental_rerun()Preformatted text
+with st.sidebar:
+    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
+    "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
+    "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
+
+st.title("💬 Chatbot")
+st.caption("🚀 A Streamlit chatbot powered by OpenAI")
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
+
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
+
+if prompt := st.chat_input():
+    if not openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        st.stop()
+
+    client = OpenAI(api_key=openai_api_key)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
+    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
+    msg = response.choices[0].message.content
+    st.session_state.messages.append({"role": "assistant", "content": msg})
+    st.chat_message("assistant").write(msg)
