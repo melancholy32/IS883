@@ -1,16 +1,14 @@
+import openai
+import requests
 import streamlit as st
-from langchain.chat_models import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
-from langchain.schema.output_parser import StrOutputParser
+import os
 
 # Page config
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
 st.image("img/SnapReviewIcon.png", caption=None)
 st.title("Quick Google Review Summary")
 
-# Initialize the OpenAI model
-openai_api_key = st.secrets["OPENAI_API_KEY"]
-llm = ChatOpenAI(openai_api_key=openai_api_key)
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Session state setup for messages and model selection
 if "openai_model" not in st.session_state:
