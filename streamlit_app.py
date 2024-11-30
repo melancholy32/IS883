@@ -1,12 +1,15 @@
 import streamlit as st
-from openai import OpenAI
-from langchain.chains import RoutingChain
+from langchain.chat_models import ChatOpenAI
+from langchain_core.runnables.branch import RunnableBranch
+from langchain.prompts import ChatPromptTemplate
+from langchain.schema.output_parser import StrOutputParser
 
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
 st.image("img/SnapReviewIcon.png", caption=None)
 st.title("Quick Google Review Summary")
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+openai_api_key = st.secrets["OPENAI_API_KEY"]
+llm = ChatOpenAI(openai_api_key=openai_api_key)
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
