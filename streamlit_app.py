@@ -1,4 +1,4 @@
-import streamlit as st.,ㅣ            
+import streamlit as st
 import openai
 openai.api_key = openai_api_key
 
