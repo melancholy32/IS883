@@ -1,5 +1,6 @@
-import streamlit as st
-from openai import OpenAI
+import streamlit as st.,ㅣ            
+import openai
+openai.api_key = openai_api_key
 
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png",)
 st.image("img/SnapReviewIcon.png", caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto", use_container_width=False)
@@ -11,8 +12,6 @@ with st.sidebar:
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
 
-st.title("💬 Chatbot")
-st.caption("🚀 A Streamlit chatbot powered by OpenAI")
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
