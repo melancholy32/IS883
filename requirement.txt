@@ -1,5 +1,7 @@
-langchain
-langchain_community
 streamlit
-openai
-requests
+streamlit-geolocation
+googlemaps
+pandas
+ace-tools
+openai==0.27.8
+ipywidgets
