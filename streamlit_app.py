@@ -166,11 +166,11 @@ summary_type = st.selectbox(
     "For my purpose of ...",
     ("Dating", "Gathering", "Working", "Friends"),
     index=None,
-    placeholder="Select one",
+    placeholder="Please select ...",
 )
 
 # Get user query
-user_query = st.text_input("(Optional) Enter the name of the place if you're looking for specific place.")
+user_query = st.text_input("(Optional) Enter the name of the place if you're looking for specific place. (Ex. KFC, Mc Donald)")
 
 if user_query:
     st.write("Please click the button to get your location: ")
