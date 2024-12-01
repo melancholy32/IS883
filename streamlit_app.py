@@ -7,7 +7,7 @@ import re
 import ipywidgets as widgets
 from IPython.display import display, Javascript
 from streamlit_geolocation import streamlit_geolocation
-from streamlit_extras.button_selector import button_selector
+#from streamlit_extras.button_selector import button_selector
 
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
 st.image("img/SnapReviewIcon.png", caption=None)
