@@ -167,7 +167,7 @@ else:
 #    placeholder="Select a type...",
 #)
 
-store_type = st.columns(10)
+store_type = st.columns(
     "Which place are you looking for?",
     (icons = ["🍎", "🍌", "🍇"]),
     selected_icons = []
