@@ -164,7 +164,7 @@ store_type = st.selectbox(
 
 summary_type = st.selectbox(
     "For my purpose of ...",
-    ("Dating", "Gathering"),
+    ("Dating", "Gathering", "Working", "Friends"),
     index=None,
     placeholder="Select one",
 )
