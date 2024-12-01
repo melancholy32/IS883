@@ -176,6 +176,7 @@ store_type = st.columns(
             if button(icons[index], key=f"button_{index}"):
                 selected_icons.append(icons[index])
 st.write("Selected icons:", selected_icons)
+)
 
 summary_type = st.selectbox(
     "What type of the place you are looking for?",
