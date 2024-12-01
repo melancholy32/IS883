@@ -152,6 +152,7 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
 # Get user query
 
 user_query = st.text_input("Enter the name of the place you are looking for: ")
+from streamlit_extras.stateful_button import button
 
 if user_query:
     st.write("Please click the button to get your location: ")
@@ -159,12 +160,22 @@ if user_query:
 else:
     get_location = None
 
-store_type = st.selectbox(
-    "What type of the place you are looking for?",
-    ("restaurant", "bar", "cafe"),
-    index=None,
-    placeholder="Select a type...",
-)
+#store_type = st.selectbox(
+#    "What type of the place you are looking for?",
+#    ("restaurant", "bar", "cafe"),
+#    index=None,
+#    placeholder="Select a type...",
+#)
+
+store_type = st.columns(10)
+    "Which place are you looking for?",
+    (icons = ["🍎", "🍌", "🍇"]),
+    selected_icons = []
+    for index, column in enumerate(columns):
+        with column:
+            if button(icons[index], key=f"button_{index}"):
+                selected_icons.append(icons[index])
+st.write("Selected icons:", selected_icons)
 
 summary_type = st.selectbox(
     "What type of the place you are looking for?",
