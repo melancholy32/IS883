@@ -150,34 +150,32 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
     else:
         print("No results found.")
 
-# Get user query
+#store_type = ["Restaurant", "Bar", "Cafe"]
+#selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
+#st.write(f"Selected month: {store_type[selected_index]}")
 
-user_query = st.text_input("Enter the name of the place you are looking for: ")
+store_type = st.selectbox(
+    "I am looking for a ...",
+    ("Restaurant", "Bar", "Cafe"),
+    index=None,
+    placeholder="Please select ...",
+)
+
+summary_type = st.selectbox(
+    "For my purpose of ...",
+    ("Dating", "Gathering"),
+    index=None,
+    placeholder="Select one",
+)
+
+# Get user query
+user_query = st.text_input("(Optional) Enter the name of the place if you're looking for specific place.")
 
 if user_query:
     st.write("Please click the button to get your location: ")
     get_location = streamlit_geolocation()
 else:
     get_location = None
-
-#store_type = ["Restaurant", "Bar", "Cafe"]
-#selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
-#st.write(f"Selected month: {store_type[selected_index]}")
-
-store_type = st.selectbox(
-    "What type of the place you are looking for?",
-    ("restaurant", "bar", "cafe"),
-    index=None,
-    placeholder="Select a type...",
-)
-
-summary_type = st.selectbox(
-    "What type of the place you are looking for?",
-    ("Dating", "Gathering"),
-    index=None,
-    placeholder="Select your purpose...",
-)
-
-
+    
 if summary_type and summary_type:
     search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
