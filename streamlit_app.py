@@ -162,13 +162,7 @@ else:
     get_location = None
 
 store_type = ["Restaurant", "Bar", "Cafe"]
-    selected_index = button_selector(
-        store_type,
-        index=0,
-        spec=4,
-        key="button_selector_place_type",
-        label="What kind of place are you looking for?",
-    )
+selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
     st.write(f"Selected month: {place_type[selected_index]}")
 
 #store_type = st.selectbox(
