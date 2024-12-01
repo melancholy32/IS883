@@ -169,7 +169,7 @@ else:
 
 store_type = st.columns(
     "Which place are you looking for?",
-    (icons = ["🍎", "🍌", "🍇"]),
+    (icons == ["🍎", "🍌", "🍇"]),
     selected_icons = []
     for index, column in enumerate(columns):
         with column:
