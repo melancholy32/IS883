@@ -8,6 +8,9 @@ import ipywidgets as widgets
 from IPython.display import display, Javascript
 from streamlit_geolocation import streamlit_geolocation
 
+st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
+st.image("img/SnapReviewIcon.png", caption=None)
+st.title("Quick Google Review Summary")
 
 # Initialize Google Maps and OpenAI clients
 GOOGLE_API_KEY = st.secrets["GoogleMapsKey"]
@@ -145,11 +148,6 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
         st.write(df.style.hide(axis="index"))
     else:
         print("No results found.")
-
-st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
-st.image("img/SnapReviewIcon.png", caption=None)
-st.title("Quick Google Review Summary")
-
 
 # Get user query
 
