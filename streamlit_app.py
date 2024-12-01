@@ -7,6 +7,7 @@ import re
 import ipywidgets as widgets
 from IPython.display import display, Javascript
 from streamlit_geolocation import streamlit_geolocation
+from streamlit_extras.button_selector import button_selector
 
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
 st.image("img/SnapReviewIcon.png", caption=None)
@@ -160,23 +161,22 @@ if user_query:
 else:
     get_location = None
 
+store_type = ["Restaurant", "Bar", "Cafe"]
+    selected_index = button_selector(
+        store_type,
+        index=0,
+        spec=4,
+        key="button_selector_place_type",
+        label="What kind of place are you looking for?",
+    )
+    st.write(f"Selected month: {place_type[selected_index]}")
+
 #store_type = st.selectbox(
 #    "What type of the place you are looking for?",
 #    ("restaurant", "bar", "cafe"),
 #    index=None,
 #    placeholder="Select a type...",
 #)
-
-store_type = st.columns(
-    "Which place are you looking for?",
-    (icons == ["🍎", "🍌", "🍇"]),
-    selected_icons == []
-    for index, column in enumerate(columns):
-        with column:
-            if button(icons[index], key=f"button_{index}"):
-                selected_icons.append(icons[index])
-st.write("Selected icons:", selected_icons)
-)
 
 summary_type = st.selectbox(
     "What type of the place you are looking for?",
