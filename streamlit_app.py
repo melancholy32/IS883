@@ -170,7 +170,7 @@ else:
 store_type = st.columns(
     "Which place are you looking for?",
     (icons == ["🍎", "🍌", "🍇"]),
-    selected_icons = []
+    selected_icons == []
     for index, column in enumerate(columns):
         with column:
             if button(icons[index], key=f"button_{index}"):
