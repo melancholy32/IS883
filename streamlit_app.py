@@ -8,6 +8,7 @@ import ipywidgets as widgets
 from IPython.display import display, Javascript
 from streamlit_geolocation import streamlit_geolocation
 #from streamlit_extras.button_selector import button_selector
+from streamlit_extras.app_logo import add_logo
 
 st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
 st.image("img/SnapReviewIcon.png", caption=None)
@@ -177,5 +178,10 @@ if user_query:
 else:
     get_location = None
     
+# Get user requirements
+def requirements():
+    st.checkbox(["Wifi","Seating", "Patio", "Restroom", "Parking", "Private Space", "Pet-allow", "Accessibility"], value=True)
+    st.write("👈 Check your requirements!")
+
 if summary_type and summary_type:
     search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
