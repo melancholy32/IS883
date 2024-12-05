@@ -182,6 +182,8 @@ summary_type = st.selectbox(
 
 # Get user query
 user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
+if not user_query:
+    user_query = None
 
 # Get user location
 get_location = None
