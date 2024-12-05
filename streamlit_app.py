@@ -191,7 +191,7 @@ summary_type = st.selectbox(
 
 # Get user query
 user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
-
+st.write(user_query)
 
 # Get user location
 get_location = get_geolocation()
