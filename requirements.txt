@@ -1,5 +1,5 @@
 streamlit
-streamlit-geolocation
+streamlit_js_eval
 googlemaps
 pandas
 ace-tools
