@@ -60,7 +60,6 @@ with tap_chatbot:
                 temperature=0.7,
             )
             summary_str = response['choices'][0]['message']['content']
-            st.write(summary_str)
     
             match = re.search(r'\{(.*?)\}', summary_str, re.DOTALL)
     
@@ -78,8 +77,9 @@ with tap_chatbot:
             remote_working_summary = summary.get("Remote Working Summary", "No remote working summary found.")
 
             st.write(dating_summary)
+            st.write(remote_working_summary)
     
-            return dating_summary, gathering_summary, remote_working_summar
+            return dating_summary, gathering_summary, remote_working_summary
     
         except Exception as e:
             return "Error summarizing reviews.", "Error summarizing reviews.", "Error summarizing reviews."
