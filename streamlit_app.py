@@ -15,7 +15,7 @@ st.image("img/SnapReviewIcon.png", caption=None)
 st.title("Quick Google Review Summary")
 
 tap_chatbot, tab_setting = st.tabs(
-    ["💬 Chatbot", "⚙️ Setting"]
+    ["💬 Chatbot", "🗒️ About this app"]
 )
 
 # Initialize Google Maps and OpenAI clients
@@ -25,20 +25,8 @@ gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
 openai.api_key = OPENAI_API_KEY
 
 with tap_setting:
-        st.slider(
-        "Temperature",
-        0.0,
-        2.0,
-        st.session_state["temperature" + current_chat + "value"],
-        0.1,
-        on_change=callback_fun,
-        key="temperature" + current_chat,
-        args=("temperature",),
-        )
-        st.caption(
-            "[官网参数说明](https://platform.openai.com/docs/api-reference/completions/create)"
-        )
-
+    st.caption("This app is to help you easily find places for your purposes from Google Review. Save some time by using our app!")
+    
 with tap_chatbot:
     def fetch_reviews_summary(reviews):
         """Summarize reviews into different categories using OpenAI."""
