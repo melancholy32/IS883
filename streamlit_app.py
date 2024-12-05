@@ -181,7 +181,7 @@ get_location = get_geolocation()
 
 store_type = st.selectbox(
     "I am looking for a ...",
-    ("Restaurant", "Bar", "Cafe"),
+    ("restaurant", "bar", "cafe"),
     index=None,
     placeholder="Please select ...",
 )
