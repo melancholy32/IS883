@@ -121,7 +121,7 @@ with tap_chatbot:
                     types = details["result"].get("types", []) # Get the type
                     restaurant_type = types[0] if types else "No type provided" # Extract the first type
     
-                    st.write(f"Find reviews for {name}:")
+                    #st.write(f"Find reviews for {name}:")
                     dating_summary, gathering_summary, remote_working_summary = fetch_reviews_summary(reviews)
                 else:
                     dating_summary = "No reviews available."
@@ -176,9 +176,8 @@ with tap_chatbot:
     #st.write(f"Selected month: {store_type[selected_index]}")
 
 
-
+# Get user's location
 get_location = get_geolocation()
-st.write(get_location)
 
 store_type = st.selectbox(
     "I am looking for a ...",
