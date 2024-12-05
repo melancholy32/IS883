@@ -126,7 +126,7 @@ with tap_chatbot:
                     restaurant_type = types[0] if types else "No type provided" # Extract the first type
     
                     #st.write(f"Find reviews for {name}:")
-                    st.write(fetch_reviews_summary(reviews)
+                    st.write(fetch_reviews_summary(reviews))
                     dating_summary, gathering_summary, remote_working_summary = fetch_reviews_summary(reviews)
                 else:
                     dating_summary = "No reviews available."
