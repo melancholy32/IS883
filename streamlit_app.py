@@ -14,7 +14,7 @@ st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
 st.image("img/SnapReviewIcon.png", caption=None)
 st.title("Quick Google Review Summary")
 
-tap_chatbot, tab_setting = st.tabs(
+tap_chatbot, tab_info = st.tabs(
     ["💬 Chatbot", "🗒️ About this app"]
 )
 
@@ -23,9 +23,6 @@ GOOGLE_API_KEY = st.secrets["GoogleMapsKey"]
 OPENAI_API_KEY = st.secrets["OpenAIkey"]
 gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
 openai.api_key = OPENAI_API_KEY
-
-with tap_setting:
-    st.caption("This app is to help you easily find places for your purposes from Google Review. Save some time by using our app!")
     
 with tap_chatbot:
     def fetch_reviews_summary(reviews):
@@ -169,6 +166,9 @@ with tap_chatbot:
               st.write()
         else:
             st.write("No results found.")
+
+with tap_info:
+    st.caption("This app is to help you easily find places for your purposes from Google Review. Save some time by using our app!")
     
     #store_type = ["Restaurant", "Bar", "Cafe"]
     #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
