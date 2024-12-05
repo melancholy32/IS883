@@ -184,6 +184,7 @@ summary_type = st.selectbox(
 user_query = st.text_input("(Optional) Enter the name of the place if you're looking for specific place. (Ex. KFC, Cafe Nero)")
 
 # Get user location
+get_location = None
 st.write("Please click the button to get your location: ")
 get_location = streamlit_geolocation()
     
