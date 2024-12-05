@@ -121,7 +121,7 @@ with tap_chatbot:
                     types = details["result"].get("types", []) # Get the type
                     restaurant_type = types[0] if types else "No type provided" # Extract the first type
     
-                    #st.write(f"Find reviews for {name}:")
+                    st.write(f"Find reviews for {name}:")
                     dating_summary, gathering_summary, remote_working_summary = fetch_reviews_summary(reviews)
                 else:
                     dating_summary = "No reviews available."
@@ -174,33 +174,28 @@ with tap_chatbot:
     #store_type = ["Restaurant", "Bar", "Cafe"]
     #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
     #st.write(f"Selected month: {store_type[selected_index]}")
-    
-    store_type = st.selectbox(
-        "I am looking for a ...",
-        ("Restaurant", "Bar", "Cafe"),
-        index=None,
-        placeholder="Please select ...",
-    )
-    
+
+
+
+get_location = get_geolocation()
+st.write(get_location)
+
+store_type = st.selectbox(
+    "I am looking for a ...",
+    ("restaurant", "bar", "cafe"),
+    index=None,
+    placeholder="Please select ...",
+)
+
 summary_type = st.selectbox(
     "For my purpose of ...",
-    ("Dating", "Gathering", "Working", "Friends"),
+    ("Dating", "Gathering", "Working"),
     index=None,
     placeholder="Please select ...",
 )
 
 # Get user query
 user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
-st.write(user_query)
-
-# Get user location
-get_location = get_geolocation()
-
 
 if summary_type and summary_type:
     search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
-
-# Get user requirements
-def requirements():
-    st.checkbox(["Wifi","Seating", "Patio", "Restroom", "Parking", "Private Space", "Pet-allow", "Accessibility"], value=True)
-    st.write("👈 Check your requirements!")
