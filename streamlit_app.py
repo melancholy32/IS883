@@ -155,6 +155,7 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
 #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
 #st.write(f"Selected month: {store_type[selected_index]}")
 
+
 store_type = st.selectbox(
     "I am looking for a ...",
     ("Restaurant", "Bar", "Cafe"),
@@ -170,7 +171,7 @@ summary_type = st.selectbox(
 )
 
 # Get user query
-user_query = st.text_input("(Optional) Enter the name of the place if you're looking for specific place. (Ex. KFC, Mc Donald)")
+user_query = st.text_input("(Optional) Enter the name of the place if you're looking for specific place. (Ex. KFC, Cafe Nero)")
 
 if user_query:
     st.write("Please click the button to get your location: ")
