@@ -168,7 +168,7 @@ with tap_chatbot:
             st.write("No results found.")
 
 with tap_info:
-    st.markdown("This app is to help you easily find places for your purposes from Google Review. Save some time by using our app!")
+    return "This app is to help you easily find places for your purposes from Google Review. Save some time by using our app!"
     
     #store_type = ["Restaurant", "Bar", "Cafe"]
     #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
