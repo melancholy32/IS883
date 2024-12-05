@@ -6,7 +6,7 @@ import json
 import re
 import ipywidgets as widgets
 from IPython.display import display, Javascript
-from streamlit_geolocation import streamlit_geolocation
+from streamlit_js_eval import get_geolocation
 #from streamlit_extras.button_selector import button_selector
 #from streamlit_extras.app_logo import add_logo
 
@@ -190,16 +190,13 @@ summary_type = st.selectbox(
 
 # Get user query
 user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
-if not user_query:
-    user_query = None
+
 
 # Get user location
-get_location = None
-st.write("Please click the button to get your location: ")
-get_location = streamlit_geolocation()
+get_location = get_geolocation()
 
 
-if summary_type and summary_type and get_location:
+if summary_type and summary_type:
     search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
 # Get user requirements
