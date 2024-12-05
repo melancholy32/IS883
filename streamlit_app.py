@@ -41,7 +41,7 @@ with tap_chatbot:
         3. Remote Working Summary (focus on the Wi-Fi quality, power outlets, and noise level for people who are doing remote working).
     
         Please provide the summaries in the following JSON format:
-        {{"Dating Summary": "your summary", "Gathering Summary": "your summary", "Gathering Summary": "Remote Working Summary"}}
+        {{"Dating Summary": "your summary", "Gathering Summary": "your summary", "Remote Working Summary": "Remote Working Summary"}}
     
         Reviews:
         {review_texts}
