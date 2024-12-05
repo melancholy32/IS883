@@ -182,13 +182,15 @@ summary_type = st.selectbox(
 
 # Get user query
 user_query = st.text_input("(Optional) Enter the name of the place if you're looking for specific place. (Ex. KFC, Cafe Nero)")
+
+# Get user location
+st.write("Please click the button to get your location: ")
+get_location = streamlit_geolocation()
     
 # Get user requirements
 def requirements():
     st.checkbox(["Wifi","Seating", "Patio", "Restroom", "Parking", "Private Space", "Pet-allow", "Accessibility"], value=True)
     st.write("👈 Check your requirements!")
 
-if summary_type and summary_type:
-    st.write("Please click the button to get your location: ")
-    get_location = streamlit_geolocation()
+if summary_type and summary_type and get_location:
     search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
