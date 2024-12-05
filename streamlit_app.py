@@ -101,7 +101,6 @@ with tap_chatbot:
             radius=radius,
             type=store_type
         )
-        time.sleep(1)
     
         # Check for results
         if results and "results" in results:
