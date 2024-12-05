@@ -155,6 +155,153 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
 #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
 #st.write(f"Selected month: {store_type[selected_index]}")
 
+with st.sidebar:
+    icon_text = f"""
+    <div class="icon-text-container">
+        <img src='data:image/png;base64,{ICON_base64}' alt='icon'>
+        <span style='font-size: 24px;'>聊天窗口</span>
+    </div>
+    """
+    st.markdown(
+        icon_text,
+        unsafe_allow_html=True,
+    )
+    # 创建容器的目的是配合自定义组件的监听操作
+    chat_container = st.container()
+    with chat_container:
+        current_chat = st.radio(
+            label="历史聊天窗口",
+            format_func=lambda x: x.split("_")[0] if "_" in x else x,
+            options=st.session_state["history_chats"],
+            label_visibility="collapsed",
+            index=st.session_state["current_chat_index"],
+            key="current_chat"
+            + st.session_state["history_chats"][st.session_state["current_chat_index"]],
+            # on_change=current_chat_callback  # 此处不适合用回调，无法识别到窗口增减的变动
+        )
+    st.write("---")
+
+
+# 数据写入文件
+def write_data(new_chat_name=current_chat):
+    if "apikey" in st.secrets:
+        st.session_state["paras"] = {
+            "temperature": st.session_state["temperature" + current_chat],
+            "top_p": st.session_state["top_p" + current_chat],
+            "presence_penalty": st.session_state["presence_penalty" + current_chat],
+            "frequency_penalty": st.session_state["frequency_penalty" + current_chat],
+        }
+        st.session_state["contexts"] = {
+            "context_select": st.session_state["context_select" + current_chat],
+            "context_input": st.session_state["context_input" + current_chat],
+            "context_level": st.session_state["context_level" + current_chat],
+        }
+        save_data(
+            st.session_state["path"],
+            new_chat_name,
+            st.session_state["history" + current_chat],
+            st.session_state["paras"],
+            st.session_state["contexts"],
+        )
+
+
+def reset_chat_name_fun(chat_name):
+    chat_name = chat_name + "_" + str(uuid.uuid4())
+    new_name = filename_correction(chat_name)
+    current_chat_index = st.session_state["history_chats"].index(current_chat)
+    st.session_state["history_chats"][current_chat_index] = new_name
+    st.session_state["current_chat_index"] = current_chat_index
+    # 写入新文件
+    write_data(new_name)
+    # 转移数据
+    st.session_state["history" + new_name] = st.session_state["history" + current_chat]
+    for item in [
+        "context_select",
+        "context_input",
+        "context_level",
+        *initial_content_all["paras"],
+    ]:
+        st.session_state[item + new_name + "value"] = st.session_state[
+            item + current_chat + "value"
+        ]
+    remove_data(st.session_state["path"], current_chat)
+
+
+def create_chat_fun():
+    st.session_state["history_chats"] = [
+        "New Chat_" + str(uuid.uuid4())
+    ] + st.session_state["history_chats"]
+    st.session_state["current_chat_index"] = 0
+
+
+def delete_chat_fun():
+    if len(st.session_state["history_chats"]) == 1:
+        chat_init = "New Chat_" + str(uuid.uuid4())
+        st.session_state["history_chats"].append(chat_init)
+    pre_chat_index = st.session_state["history_chats"].index(current_chat)
+    if pre_chat_index > 0:
+        st.session_state["current_chat_index"] = (
+            st.session_state["history_chats"].index(current_chat) - 1
+        )
+    else:
+        st.session_state["current_chat_index"] = 0
+    st.session_state["history_chats"].remove(current_chat)
+    remove_data(st.session_state["path"], current_chat)
+
+
+with st.sidebar:
+    c1, c2 = st.columns(2)
+    create_chat_button = c1.button(
+        "新建", use_container_width=True, key="create_chat_button"
+    )
+    if create_chat_button:
+        create_chat_fun()
+        st.rerun()
+
+    delete_chat_button = c2.button(
+        "删除", use_container_width=True, key="delete_chat_button"
+    )
+    if delete_chat_button:
+        delete_chat_fun()
+        st.rerun()
+
+with st.sidebar:
+    if ("set_chat_name" in st.session_state) and st.session_state[
+        "set_chat_name"
+    ] != "":
+        reset_chat_name_fun(st.session_state["set_chat_name"])
+        st.session_state["set_chat_name"] = ""
+        st.rerun()
+
+    st.write("\n")
+    st.text_input("设定窗口名称：", key="set_chat_name", placeholder="点击输入")
+    st.selectbox(
+        "选择模型：",
+        index=0,
+        options=["gpt-4o-mini", "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4o", "gpt-4"],
+        key="select_model",
+    )
+    st.caption(
+        """
+    - 双击或按/键可定位输入栏
+    - Ctrl + Enter 快捷提交问题
+    """
+    )
+    st.markdown(
+        '<a href="https://github.com/PierXuY/ChatGPT-Assistant" target="_blank" rel="ChatGPT-Assistant">'
+        '<img src="https://badgen.net/badge/icon/GitHub?icon=github&amp;label=ChatGPT Assistant" alt="GitHub">'
+        "</a>",
+        unsafe_allow_html=True,
+    )
+
+# 加载数据
+if "history" + current_chat not in st.session_state:
+    for key, value in load_data(st.session_state["path"], current_chat).items():
+        if key == "history":
+            st.session_state[key + current_chat] = value
+        else:
+            for k, v in value.items():
+                st.session_state[k + current_chat + "value"] = v
 
 store_type = st.selectbox(
     "I am looking for a ...",
