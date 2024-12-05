@@ -155,7 +155,7 @@ with tap_chatbot:
             elif summary_type == "Gathering":
               df = df.drop(columns=["Dating Summary"])
               df = df.drop(columns=["Remote Working Summary"])
-            elif summary_type == "Remote Working":
+            elif summary_type == "Working":
               df = df.drop(columns=["Dating Summary"])
               df = df.drop(columns=["Gathering Summary"])
     
@@ -181,7 +181,7 @@ get_location = get_geolocation()
 
 store_type = st.selectbox(
     "I am looking for a ...",
-    ("restaurant", "bar", "cafe"),
+    ("Restaurant", "Bar", "Cafe"),
     index=None,
     placeholder="Please select ...",
 )
