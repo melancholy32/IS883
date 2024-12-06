@@ -189,7 +189,7 @@ with tab_info:
 with tab_search:
     store_type = st.selectbox(
         "🔍 I am looking for a ...",
-        ("Restaurant", "Bar", "Cafe"),
+        ("restaurant", "bar", "cafe"),
         index=None,
         placeholder="Please select ...",
     )
