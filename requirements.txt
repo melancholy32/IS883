@@ -1,4 +1,4 @@
-openai==1.1.1
+openai<1.0.0
 streamlit
 streamlit_js_eval
 googlemaps
