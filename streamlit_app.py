@@ -45,7 +45,7 @@ with tap_chatbot:
         Reviews:
         {review_texts}
     
-        Keep your Summary under 50 words for each.
+        Keep your Summary under 80 words for each.
         """
         try:
             response = openai.ChatCompletion.create(
