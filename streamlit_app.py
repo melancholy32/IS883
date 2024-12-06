@@ -219,12 +219,15 @@ with tab_search:
         result = search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
         # Save the result to session state for persistence
-        st.session_state["search_result"] = result
+        st.session_state["search_result"] = result if result else "No results found for your query."
 
     # Display the results if available in session state
     if "search_result" in st.session_state:
         st.write("### Search Results")
-        st.write(st.session_state["search_result"])
+        if st.session_state["search_result"] == "No results found for your query.":
+            st.warning(st.session_state["search_result"])
+        else:
+            st.json(st.session_state["search_result"])  # Display results as JSON or adjust as needed
 
 
 with tab_chatbot:
