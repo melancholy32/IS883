@@ -7,3 +7,4 @@ openai==0.27.8
 ipywidgets
 langchain_community 
 langchain_openai
+langchain
