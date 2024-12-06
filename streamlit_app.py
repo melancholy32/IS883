@@ -217,7 +217,7 @@ with tab_chatbot:
         
         # Add the submit button
         submitted = st.form_submit_button(
-            "确认提交", use_container_width=True
+            "Search", use_container_width=True
         )
     
     if submitted:
