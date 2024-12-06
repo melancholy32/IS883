@@ -31,7 +31,6 @@ with tap_chatbot:
             return "No reviews available.", "No reviews available.", "No reviews available."
     
         review_texts = "\n".join([review.get("text", "") for review in reviews if review.get("text")])
-        #print ("review_texts: ", review_texts)
     
         prompt = f"""
             Please summarize the information relevant to the category assigned to you.
@@ -70,14 +69,11 @@ with tap_chatbot:
                 return "Error: No JSON found.", "Error: No JSON found."
     
             summary = json.loads(summary_str)
-            st.write(summary)
     
             dating_summary = summary.get("Dating Summary", "No dating summary found.")
             gathering_summary = summary.get("Gathering Summary", "No gathering summary found.")
             remote_working_summary = summary.get("Remote Working Summary", "No remote working summary found.")
 
-            st.write(dating_summary)
-            st.write(remote_working_summary)
     
             return dating_summary, gathering_summary, remote_working_summary
     
@@ -126,7 +122,6 @@ with tap_chatbot:
                     restaurant_type = types[0] if types else "No type provided" # Extract the first type
     
                     #st.write(f"Find reviews for {name}:")
-                    st.write(fetch_reviews_summary(reviews))
                     dating_summary, gathering_summary, remote_working_summary = fetch_reviews_summary(reviews)
                 else:
                     dating_summary = "No reviews available."
