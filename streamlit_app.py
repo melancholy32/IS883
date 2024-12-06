@@ -63,7 +63,6 @@ def fetch_reviews_summary(reviews):
             stop=None,
             temperature=0.7,
         )
-        st.write(response)
 
         summary_str = response['choices'][0]['message']['content']
 
