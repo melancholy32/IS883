@@ -188,6 +188,7 @@ with tab_info:
     st.write(openai.api_key)
     st.write(OPENAI_API_KEY)
     st.write(GOOGLE_API_KEY)
+    st.write("*****************")
     
 
     #store_type = ["🍽️ Restaurant", "🥂 Bar", "☕ Cafe"]
