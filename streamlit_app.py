@@ -154,13 +154,13 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
         df['Overall Rating'] = df['Overall Rating'].map('{:.1f}'.format)
 
          # Filter columns based on summary_type
-        if summary_type == "Dating":
+        if summary_type == "💘 Dating":
           df = df.drop(columns=["Gathering Summary"])
           df = df.drop(columns=["Remote Working Summary"])
-        elif summary_type == "Gathering":
+        elif summary_type == "👬 Gathering":
           df = df.drop(columns=["Dating Summary"])
           df = df.drop(columns=["Remote Working Summary"])
-        elif summary_type == "Working":
+        elif summary_type == "💻 Working":
           df = df.drop(columns=["Dating Summary"])
           df = df.drop(columns=["Gathering Summary"])
 
@@ -189,7 +189,7 @@ with tab_info:
 with tab_search:
     store_type = st.selectbox(
         "🔍 I am looking for a ...",
-        ("🍽️ Restaurant", "🥂 Bar", "☕ Cafe"),
+        ("Restaurant", "Bar", "Cafe"),
         index=None,
         placeholder="Please select ...",
     )
