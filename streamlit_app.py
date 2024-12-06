@@ -188,7 +188,7 @@ with tab_info:
 
 
 with tab_search:
-    # Create a form for inputs and submit button
+    # Create a form for input and the search button
     with st.form("search_form"):
         store_type = st.selectbox(
             "I am looking for a ...",
@@ -207,28 +207,22 @@ with tab_search:
         # Get user query
         user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
 
-        # Add the submit button
-        submitted = st.form_submit_button("Search", use_container_width=True)
+        # Add a submit button to start searching
+        submitted = st.form_submit_button("Search")
 
-    # Process form submission
     if submitted:
         # Get user's location
         get_location = get_geolocation()
 
-        # Perform the search and summarize
+        # Call the search function with the input values
         result = search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
-        # Save the result to session state for persistence
-        st.session_state["search_result"] = result if result else "No results found for your query."
-
-    # Display the results if available in session state
-    if "search_result" in st.session_state:
-        st.write("### Search Results")
-        if st.session_state["search_result"] == "No results found for your query.":
-            st.warning(st.session_state["search_result"])
+        # Display the results
+        if result:
+            st.write("### Search Results")
+            st.json(result)  # Use st.json to display structured results
         else:
-            st.json(st.session_state["search_result"])  # Display results as JSON or adjust as needed
-
+            st.warning("No results found for your query. Please try again.")
 
 with tab_chatbot:
     with st.form("restaurant_query_form"):  # Wrap everything in a form
