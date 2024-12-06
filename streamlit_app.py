@@ -85,7 +85,7 @@ with tap_chatbot:
         if get_location:
             location = (get_location['coords']['latitude'], get_location['coords']['longitude'])
             radius = 20000  # Radius in meters (20km)
-            st.write(f"Using user's location: {location}")
+            st.markdown(:gray[f"Using user's location: {location}"])
             st.write(f"Search for radius = {radius/1000} km")
         else:
             # Define a central location in Massachusetts (e.g., Boston)
