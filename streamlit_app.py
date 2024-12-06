@@ -166,7 +166,7 @@ with tap_chatbot:
               for column, value in row.items():
                 if column == 'Restaurant Name':
                     st.header(f"{value}")
-                elif column.find("Summary") == 1:
+                elif column in ["Gathering Summary", "Dating Summary", "Remote Working Summary"]:
                     st.markdown(f"**{column}:** :red[{value}]")
                 else:
                     st.markdown(f"**{column}:** {value}")
