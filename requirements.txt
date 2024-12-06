@@ -1,5 +1,4 @@
-openai==1.54.5
-openai migrate
+openai==1.0.0
 streamlit
 streamlit_js_eval
 googlemaps
