@@ -52,7 +52,7 @@ def fetch_reviews_summary(reviews):
     Keep your Summary under 80 words for each.
     """
 
-    chat = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+    chat = ChatOpenAI(openai_api_key=openai.api_key, model="gpt-4o-mini", temperature=0.7)
 
     # Define the prompt template
     prompt = ChatPromptTemplate.from_messages(
