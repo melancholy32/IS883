@@ -7,4 +7,4 @@ ace-tools
 ipywidgets
 langchain_community 
 #langchain_openai
-langchain
+#langchain
