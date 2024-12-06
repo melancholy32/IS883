@@ -185,6 +185,8 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
 
 with tab_info:
     st.write("This app is to help you easily find places for your purposes from Google Review🔍. Save some time by using our app!😁")
+    st.write(openai.api_key)
+    
 
     #store_type = ["🍽️ Restaurant", "🥂 Bar", "☕ Cafe"]
     #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
@@ -243,7 +245,7 @@ with tab_chatbot:
         User query: {user_query}
         """
         
-        chat = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4o-mini")
+        chat = ChatOpenAI(openai_api_key=openai.api_ke, model="gpt-4o-mini")
         
         prompt = ChatPromptTemplate.from_messages(
             [
