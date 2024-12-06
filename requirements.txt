@@ -1,5 +1,4 @@
 openai==0.28
-openai
 streamlit
 streamlit_js_eval
 googlemaps
