@@ -29,8 +29,8 @@ tab_info, tap_search, tap_chatbot,  = st.tabs(
 GOOGLE_API_KEY = st.secrets["GoogleMapsKey"]
 OPENAI_API_KEY = st.secrets["OpenAIkey"]
 gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
-#openai.api_key = OPENAI_API_KEY
-chat = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4o-mini")
+openai.api_key = OPENAI_API_KEY
+#chat = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4o-mini")
     
 
 def fetch_reviews_summary(reviews):
