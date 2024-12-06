@@ -29,7 +29,7 @@ tab_info, tab_search, tab_chatbot,  = st.tabs(
 GOOGLE_API_KEY = st.secrets["GoogleMapsKey"]
 OPENAI_API_KEY = st.secrets["OpenAIkey"]
 gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
-openai.api_key = OPENAI_API_KEY
+#openai.api_key = OPENAI_API_KEY
 
 
 def fetch_reviews_summary(reviews):
@@ -54,16 +54,18 @@ def fetch_reviews_summary(reviews):
     
     try:
 
-        response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are an expert in providing summaries."},
-                {"role": "user", "content": prompt}
-            ],
-            n=1,
-            stop=None,
-            temperature=0.7,
-        )
+        response = ChatOpenAI(model_name="gpt-4o-mini", openai_api_key=OPENAI_API_KEY)
+
+        # response = openai.ChatCompletion.create(
+        #     model="gpt-4o-mini",
+        #     messages=[
+        #         {"role": "system", "content": "You are an expert in providing summaries."},
+        #         {"role": "user", "content": prompt}
+        #     ],
+        #     n=1,
+        #     stop=None,
+        #     temperature=0.7,
+        # )
 
         summary_str = response['choices'][0]['message']['content']
 
