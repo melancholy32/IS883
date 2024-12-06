@@ -51,11 +51,8 @@ def fetch_reviews_summary(reviews):
     {review_texts}
     Keep your Summary under 80 words for each.
     """
-
-
     
     try:
-
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=[
@@ -66,6 +63,7 @@ def fetch_reviews_summary(reviews):
             stop=None,
             temperature=0.7,
         )
+        st.write(response)
 
         summary_str = response['choices'][0]['message']['content']
 
@@ -249,7 +247,7 @@ with tab_chatbot:
         User query: {user_query}
         """
         
-        chat = ChatOpenAI(openai_api_key=openai.api_ke, model="gpt-4o-mini")
+        chat = ChatOpenAI(openai_api_key=openai.api_key, model="gpt-4o-mini")
         
         prompt = ChatPromptTemplate.from_messages(
             [
