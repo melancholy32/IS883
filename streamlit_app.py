@@ -51,18 +51,6 @@ def fetch_reviews_summary(reviews):
     {review_texts}
     Keep your Summary under 80 words for each.
     """
-
-    response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are an expert in providing summaries."},
-                {"role": "user", "content": prompt}
-            ],
-            n=1,
-            stop=None,
-            temperature=0.7,
-        )
-    st.write(response)
     
     try:
         response = openai.ChatCompletion.create(
@@ -194,14 +182,8 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
         st.write("No results found.")
 
 with tab_info:
-    st.write("This app is to help you easily find places for your purposes from Google Review🔍. Save some time by using our app!😁 hahahahahaha")
-    st.write("*****************")
-    st.write(openai.api_key)
-    st.write(OPENAI_API_KEY)
-    st.write(GOOGLE_API_KEY)
-    st.write("*****************")
+    st.write("This app is to help you easily find places for your purposes from Google Review🔍. Save some time by using our app!😁")
     
-
     #store_type = ["🍽️ Restaurant", "🥂 Bar", "☕ Cafe"]
     #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
     #st.write(f"Selected month: {store_type[selected_index]}")
