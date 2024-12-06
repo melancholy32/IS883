@@ -176,9 +176,6 @@ with tap_chatbot:
     #st.write(f"Selected month: {store_type[selected_index]}")
 
 
-# Get user's location
-get_location = get_geolocation()
-
 store_type = st.selectbox(
     "I am looking for a ...",
     ("restaurant", "bar", "cafe"),
@@ -195,6 +192,9 @@ summary_type = st.selectbox(
 
 # Get user query
 user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
+
+# Get user's location
+get_location = get_geolocation()
 
 if summary_type and summary_type:
     search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
