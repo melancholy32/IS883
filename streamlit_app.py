@@ -65,8 +65,9 @@ def fetch_reviews_summary(reviews):
             stop=None,
             temperature=0.7,
         )
+        st.write(response)
         summary_str = response['choices'][0]['message']['content']
-        st.write(summary_str)
+        
 
         match = re.search(r'\{(.*?)\}', summary_str, re.DOTALL)
 
