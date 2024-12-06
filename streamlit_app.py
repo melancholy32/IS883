@@ -14,8 +14,8 @@ st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
 st.image("img/SnapReviewIcon.png", caption=None)
 st.title("Quick Google Review Summary")
 
-tap_chatbot, tab_info = st.tabs(
-    ["💬 Chatbot", "🗒️ About this app"]
+tab_info, tap_search, tap_chatbot,  = st.tabs(
+    ["🗒️ About this app", "🌐 Searching", "💬 Chatbot"]
 )
 
 # Initialize Google Maps and OpenAI clients
@@ -205,3 +205,7 @@ with tap_chatbot:
     
     if summary_type and summary_type:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
+
+with tap_search:
+
+
