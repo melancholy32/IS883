@@ -51,6 +51,18 @@ def fetch_reviews_summary(reviews):
     {review_texts}
     Keep your Summary under 80 words for each.
     """
+
+    response = openai.ChatCompletion.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are an expert in providing summaries."},
+                {"role": "user", "content": prompt}
+            ],
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+    st.write(response)
     
     try:
         response = openai.ChatCompletion.create(
