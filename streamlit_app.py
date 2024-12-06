@@ -180,23 +180,23 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
         st.write("No results found.")
 
 with tab_info:
-    st.write("This app is to help you easily find places for your purposes from Google Review. Save some time by using our app!")
+    st.write("This app is to help you easily find places for your purposes from Google Review🔍. Save some time by using our app!😁")
 
-    #store_type = ["Restaurant", "Bar", "Cafe"]
+    #store_type = ["🍽️ Restaurant", "🥂 Bar", "☕ Cafe"]
     #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
     #st.write(f"Selected month: {store_type[selected_index]}")
 
 with tab_search:
     store_type = st.selectbox(
-        "I am looking for a ...",
-        ("restaurant", "bar", "cafe"),
+        "🔍 I am looking for a ...",
+        ("🍽️ Restaurant", "🥂 Bar", "☕ Cafe"),
         index=None,
         placeholder="Please select ...",
     )
 
     summary_type = st.selectbox(
-        "For my purpose of ...",
-        ("Dating", "Gathering", "Working"),
+        "🔍 For my purpose of ...",
+        ("💘 Dating", "👬 Gathering", "💻 Working"),
         index=None,
         placeholder="Please select ...",
     )
@@ -212,7 +212,7 @@ with tab_search:
         
 with tab_chatbot:
     with st.form("restaurant_query_form"):  # Wrap everything in a form
-        user_query = st.text_input("Which restaurant are you looking for?")
+        user_query = st.text_input("🔍 Which restaurant are you looking for?")
         
         # Add the submit button
         submitted = st.form_submit_button(
