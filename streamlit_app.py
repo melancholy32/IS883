@@ -206,6 +206,4 @@ with tap_chatbot:
     if summary_type and summary_type:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
-with tap_search:
-
-
+#with tap_search:
