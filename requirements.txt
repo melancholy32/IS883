@@ -3,7 +3,6 @@ streamlit_js_eval
 googlemaps
 pandas
 ace-tools
-openai==0.27.8
 ipywidgets
 langchain_community 
 langchain_openai
