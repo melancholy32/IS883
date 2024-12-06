@@ -214,6 +214,7 @@ with tap_search:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
 with tap_chatbot:
+    
     user_query = st.text_input("Which restaurant you are looking for?")
 
     instruction = f"""
@@ -248,8 +249,7 @@ with tap_chatbot:
     
     
     # Setting up the Serper tool
-    #os.environ["SERPER_API_KEY"] = st.secrets['SERPER_API']
-    os.environ["SERPER_API_KEY"] = "e847a8451fd3eca884dd4fa40db1f8b37bf2d787"
+    os.environ["SERPER_API_KEY"] = st.secrets['SERPER_API']
     search = GoogleSerperAPIWrapper()
     tools = [
         Tool(
