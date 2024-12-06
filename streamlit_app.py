@@ -30,8 +30,7 @@ GOOGLE_API_KEY = st.secrets["GoogleMapsKey"]
 OPENAI_API_KEY = st.secrets["OpenAIkey"]
 gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
 openai.api_key = OPENAI_API_KEY
-#chat = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4o-mini")
-    
+
 
 def fetch_reviews_summary(reviews):
     """Summarize reviews into different categories using OpenAI."""
@@ -46,16 +45,12 @@ def fetch_reviews_summary(reviews):
     1. Dating Summary (focus on the experience, atmosphere, cuisine, and service quality for couples).
     2. Gathering Summary (focus on the experience, location, accessibility, and seating for groups of friends or families).
     3. Remote Working Summary (focus on the Wi-Fi quality, power outlets, and noise level for people who are doing remote working).
-
     Please provide the summaries in the following JSON format:
     {{"Dating Summary": "your summary", "Gathering Summary": "your summary", "Remote Working Summary": "Remote Working Summary"}}
-
     Reviews:
     {review_texts}
-
     Keep your Summary under 80 words for each.
     """
-    
     try:
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
@@ -67,9 +62,7 @@ def fetch_reviews_summary(reviews):
             stop=None,
             temperature=0.7,
         )
-        st.write(response)
         summary_str = response['choices'][0]['message']['content']
-        
 
         match = re.search(r'\{(.*?)\}', summary_str, re.DOTALL)
 
@@ -92,7 +85,7 @@ def fetch_reviews_summary(reviews):
         return "Error summarizing reviews.", "Error summarizing reviews.", "Error summarizing reviews."
 
 def search_and_summarize_restaurants(query, store_type, summary_type, get_location):
-        
+
     if get_location:
         location = (get_location['coords']['latitude'], get_location['coords']['longitude'])
         radius = 20000  # Radius in meters (20km)
@@ -112,7 +105,7 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
         radius=radius,
         type=store_type
     )
-    
+
 
     # Check for results
     if results and "results" in results:
@@ -171,7 +164,7 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
           df = df.drop(columns=["Gathering Summary"])
 
         #st.write("All Restaurants with Summaries (Ordered by Overall Rating):")
-        
+
         for index, row in df.iterrows():
           st.divider()
           for column, value in row.items():
@@ -185,9 +178,9 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
     else:
         st.write("No results found.")
 
-with tab_info:
+with tap_info:
     st.write("This app is to help you easily find places for your purposes from Google Review. Save some time by using our app!")
-    
+
     #store_type = ["Restaurant", "Bar", "Cafe"]
     #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
     #st.write(f"Selected month: {store_type[selected_index]}")
@@ -200,22 +193,21 @@ with tap_search:
         index=None,
         placeholder="Please select ...",
     )
-    
+
     summary_type = st.selectbox(
         "For my purpose of ...",
         ("Dating", "Gathering", "Working"),
         index=None,
         placeholder="Please select ...",
     )
-    
+
     # Get user query
     user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
-    
+
     # Get user's location
     get_location = get_geolocation()
 
-    
-    if summary_type and store_type:
+    if summary_type and summary_type:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
 # with tap_chatbot:
