@@ -235,7 +235,7 @@ with tap_chatbot:
     User query: {user_query}
     """
     
-    chat = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4o-mini")
+    chat = ChatOpenAI(openai_api_key=openai.api_key, model="gpt-4o-mini")
     
     
     prompt = ChatPromptTemplate.from_messages(
