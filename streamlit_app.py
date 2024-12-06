@@ -52,7 +52,7 @@ def fetch_reviews_summary(reviews):
     Keep your Summary under 80 words for each.
     """
 
-    st.write(openai.api_key)
+
     
     try:
 
@@ -242,6 +242,8 @@ with tab_chatbot:
         
         User query: {user_query}
         """
+
+        st.write(openai.api_key)
         
         chat = ChatOpenAI(openai_api_key=openai.api_key, model="gpt-4o-mini")
         
