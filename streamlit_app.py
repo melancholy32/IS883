@@ -21,7 +21,7 @@ st.set_page_config(page_title="Snap Review", page_icon="img/SnapReviewIcon.png")
 st.image("img/SnapReviewIcon.png", caption=None)
 st.title("Quick Google Review Summary")
 
-tab_info, tap_search, tap_chatbot,  = st.tabs(
+tab_info, tab_search, tab_chatbot,  = st.tabs(
     ["🗒️ About this app", "🌐 Searching", "💬 Chatbot"]
 )
 
@@ -178,7 +178,7 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
     else:
         st.write("No results found.")
 
-with tap_info:
+with tab_info:
     st.write("This app is to help you easily find places for your purposes from Google Review. Save some time by using our app!")
 
     #store_type = ["Restaurant", "Bar", "Cafe"]
@@ -186,7 +186,7 @@ with tap_info:
     #st.write(f"Selected month: {store_type[selected_index]}")
 
 
-with tap_search:
+with tab_search:
     store_type = st.selectbox(
         "I am looking for a ...",
         ("restaurant", "bar", "cafe"),
@@ -210,7 +210,7 @@ with tap_search:
     if summary_type and summary_type:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
-# with tap_chatbot:
+# with tab_chatbot:
     
 #     user_query = st.text_input("Which restaurant you are looking for?")
 
