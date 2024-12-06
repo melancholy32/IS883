@@ -225,7 +225,6 @@ with tab_chatbot:
         instruction = f"""
         Based on the user's query, please search for detailed information on that place(s) in Boston.
         1) Details to Provide:
-        - Name
         - Address
         - Website link (if available).
         - Phone number
