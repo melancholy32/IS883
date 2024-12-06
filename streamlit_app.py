@@ -212,7 +212,14 @@ with tab_search:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
 with tab_chatbot:
-    
+    submitted = st.form_submit_button(
+    "确认提交", use_container_width=True, on_click=input_callback
+    )
+        if submitted:
+        st.session_state["user_input_content"] = user_input
+        st.session_state["user_voice_value"] = ""
+        st.rerun()
+            
     user_query = st.text_input("Which restaurant you are looking for?")
 
     instruction = f"""
