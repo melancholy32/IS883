@@ -1,17 +1,17 @@
 import streamlit as st
 import googlemaps
-import openai
+#import openai
 import pandas as pd
 import json
 import re
 import ipywidgets as widgets
 from IPython.display import display, Javascript
 from streamlit_js_eval import get_geolocation
-# from langchain_community.utilities import GoogleSerperAPIWrapper
-# from langchain_core.tools import Tool
-# from langchain_core.prompts import ChatPromptTemplate
-# from langchain_openai import ChatOpenAI
-# from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_community.utilities import GoogleSerperAPIWrapper
+from langchain_core.tools import Tool
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_tool_calling_agent
 import os
 
 #from streamlit_extras.button_selector import button_selector
@@ -29,7 +29,7 @@ tab_info, tab_search, tab_chatbot,  = st.tabs(
 GOOGLE_API_KEY = st.secrets["GoogleMapsKey"]
 OPENAI_API_KEY = st.secrets["OpenAIkey"]
 gmaps = googlemaps.Client(key=GOOGLE_API_KEY)
-openai.api_key = OPENAI_API_KEY
+#openai.api_key = OPENAI_API_KEY
 
 
 def fetch_reviews_summary(reviews):
@@ -240,7 +240,7 @@ with tab_chatbot:
         User query: {user_query}
         """
         
-        chat = ChatOpenAI(openai_api_key=openai.api_key, model="gpt-4o-mini")
+        chat = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4o-mini")
         
         prompt = ChatPromptTemplate.from_messages(
             [
