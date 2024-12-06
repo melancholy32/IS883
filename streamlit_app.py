@@ -211,11 +211,20 @@ with tab_search:
         submitted = st.form_submit_button("Search")
 
     if submitted:
+        # Debugging: Display inputs to ensure they are captured
+        st.write("Debug: Inputs captured")
+        st.write(f"Store Type: {store_type}, Summary Type: {summary_type}, User Query: {user_query}")
+
         # Get user's location
         get_location = get_geolocation()
+        st.write(f"Debug: User location captured: {get_location}")
 
         # Call the search function with the input values
         result = search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
+
+        # Debugging: Check the result from the function
+        st.write("Debug: Result from search_and_summarize_restaurants")
+        st.write(result)
 
         # Display the results
         if result:
@@ -223,7 +232,6 @@ with tab_search:
             st.json(result)  # Use st.json to display structured results
         else:
             st.warning("No results found for your query. Please try again.")
-
 with tab_chatbot:
     with st.form("restaurant_query_form"):  # Wrap everything in a form
         user_query = st.text_input("Which restaurant are you looking for?")
