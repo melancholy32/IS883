@@ -186,52 +186,30 @@ with tab_info:
     #selected_index = button_selector(store_type, index=0, spec=4, key="button_selector_place_type", label="What kind of place are you looking for?")
     #st.write(f"Selected month: {store_type[selected_index]}")
 
-
 with tab_search:
-    # Create a form for input and the search button
-    with st.form("search_form"):
-        store_type = st.selectbox(
-            "I am looking for a ...",
-            ("restaurant", "bar", "cafe"),
-            index=None,
-            placeholder="Please select ...",
-        )
+    store_type = st.selectbox(
+        "I am looking for a ...",
+        ("restaurant", "bar", "cafe"),
+        index=None,
+        placeholder="Please select ...",
+    )
 
-        summary_type = st.selectbox(
-            "For my purpose of ...",
-            ("Dating", "Gathering", "Working"),
-            index=None,
-            placeholder="Please select ...",
-        )
+    summary_type = st.selectbox(
+        "For my purpose of ...",
+        ("Dating", "Gathering", "Working"),
+        index=None,
+        placeholder="Please select ...",
+    )
 
-        # Get user query
-        user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
+    # Get user query
+    user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
 
-        # Add a submit button to start searching
-        submitted = st.form_submit_button("Search")
+    # Get user's location
+    get_location = get_geolocation()
 
-    if submitted:
-        # Debugging: Display inputs to ensure they are captured
-        st.write("Debug: Inputs captured")
-        st.write(f"Store Type: {store_type}, Summary Type: {summary_type}, User Query: {user_query}")
-
-        # Get user's location
-        get_location = get_geolocation()
-        st.write(f"Debug: User location captured: {get_location}")
-
-        # Call the search function with the input values
-        result = search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
-
-        # Debugging: Check the result from the function
-        st.write("Debug: Result from search_and_summarize_restaurants")
-        st.write(result)
-
-        # Display the results
-        if result:
-            st.write("### Search Results")
-            st.json(result)  # Use st.json to display structured results
-        else:
-            st.warning("No results found for your query. Please try again.")
+    if summary_type and summary_type:
+        search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
+        
 with tab_chatbot:
     with st.form("restaurant_query_form"):  # Wrap everything in a form
         user_query = st.text_input("Which restaurant are you looking for?")
