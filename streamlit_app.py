@@ -162,7 +162,7 @@ with tap_chatbot:
             st.write("All Restaurants with Summaries (Ordered by Overall Rating):")
             
             for index, row in df.iterrows():
-                st.divider()
+              st.divider()
               for column, value in row.items():
                 st.write(f"{column}: {value}")
               st.write()
