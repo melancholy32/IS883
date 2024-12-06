@@ -86,12 +86,12 @@ with tap_chatbot:
             location = (get_location['coords']['latitude'], get_location['coords']['longitude'])
             radius = 20000  # Radius in meters (20km)
             st.markdown(f":gray[Using user's location: {location}]")
-            st.write(f"Search for radius = {radius/1000} km")
+            st.markdown(f":gray[Search for radius = {radius/1000} km]")
         else:
             # Define a central location in Massachusetts (e.g., Boston)
             location = (42.3601, -71.0589)  # Latitude and Longitude of Boston, MA
             radius = 50000  # Radius in meters (50km)
-            st.write(f"Search for Great Boston area")
+            st.markdown(f":gray[Search for Great Boston area]")
     
     
         # Use the Places API to search for the restaurant
@@ -166,8 +166,10 @@ with tap_chatbot:
               for column, value in row.items():
                 if column == 'Restaurant Name':
                     st.header(f"{value}")
+                elif column.find("Summary"):
+                    st.markdown(f"**{column}:** :Brown[{value}]")
                 else:
-                    st.markdown(f"**{column}**: {value}")
+                    st.markdown(f"**{column}:** {value}")
               st.write()
         else:
             st.write("No results found.")
