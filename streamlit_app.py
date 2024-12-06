@@ -51,30 +51,39 @@ def fetch_reviews_summary(reviews):
     {review_texts}
     Keep your Summary under 80 words for each.
     """
-
-    response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are an expert in providing summaries."},
-                {"role": "user", "content": prompt}
-            ],
-            n=1,
-            stop=None,
-            temperature=0.7,
-        )
-    st.write(response)
     
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are an expert in providing summaries."},
-                {"role": "user", "content": prompt}
-            ],
-            n=1,
-            stop=None,
-            temperature=0.7,
+
+
+        chat = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+
+        # Define the prompt template
+        prompt = ChatPromptTemplate.from_messages(
+            [
+        ("system", "You are an expert in providing summaries."),
+        ("human", prompt)
+            ]
         )
+        # Generate the response
+        response = chat(prompt.format(review_texts=review_texts))  
+        st.write(response)
+
+        
+        # response = openai.ChatCompletion.create(
+        #     model="gpt-4o-mini",
+        #     messages=[
+        #         {"role": "system", "content": "You are an expert in providing summaries."},
+        #         {"role": "user", "content": prompt}
+        #     ],
+        #     n=1,
+        #     stop=None,
+        #     temperature=0.7,
+        # )
+
+        
+
+
+        
         summary_str = response['choices'][0]['message']['content']
 
         match = re.search(r'\{(.*?)\}', summary_str, re.DOTALL)
