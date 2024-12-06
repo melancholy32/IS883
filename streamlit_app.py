@@ -159,7 +159,7 @@ with tap_chatbot:
               df = df.drop(columns=["Dating Summary"])
               df = df.drop(columns=["Gathering Summary"])
     
-            st.write("All Restaurants with Summaries (Ordered by Overall Rating):")
+            #st.write("All Restaurants with Summaries (Ordered by Overall Rating):")
             
             for index, row in df.iterrows():
               st.divider()
@@ -167,7 +167,7 @@ with tap_chatbot:
                 if column == 'Restaurant Name':
                     st.header(f"{value}")
                 else:
-                    st.write(f"{column}: {value}")
+                    st.markdown(f"**{column}**: {value}")
               st.write()
         else:
             st.write("No results found.")
