@@ -212,7 +212,7 @@ with tap_search:
     # Get user's location
     get_location = get_geolocation()
     
-    if summary_type and summary_type:
+    if summary_type and store_type:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
 # with tap_chatbot:
