@@ -51,22 +51,26 @@ def fetch_reviews_summary(reviews):
     {review_texts}
     Keep your Summary under 80 words for each.
     """
+
+    chat = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+
+    # Define the prompt template
+    prompt = ChatPromptTemplate.from_messages(
+        [
+    ("system", "You are an expert in providing summaries."),
+    ("human", prompt)
+        ]
+    )
+    # Generate the response
+    response = chat(prompt.format(review_texts=review_texts))  
+    st.write(response)
+
+    
     
     try:
 
 
-        chat = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
-
-        # Define the prompt template
-        prompt = ChatPromptTemplate.from_messages(
-            [
-        ("system", "You are an expert in providing summaries."),
-        ("human", prompt)
-            ]
-        )
-        # Generate the response
-        response = chat(prompt.format(review_texts=review_texts))  
-        st.write(response)
+        
 
         
         # response = openai.ChatCompletion.create(
