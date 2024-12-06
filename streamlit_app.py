@@ -164,7 +164,10 @@ with tap_chatbot:
             for index, row in df.iterrows():
               st.divider()
               for column, value in row.items():
-                st.write(f"{column}: {value}")
+                if column == 'Restaurant Name':
+                    st.header(f"{value}")
+                else:
+                    st.write(f"{column}: {value}")
               st.write()
         else:
             st.write("No results found.")
