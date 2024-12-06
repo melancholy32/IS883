@@ -207,20 +207,26 @@ with tab_search:
         # Get user query
         user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
 
+        # Add the submit button
+        submitted = st.form_submit_button("Search", use_container_width=True)
+
+    # Process form submission
+    if submitted:
         # Get user's location
         get_location = get_geolocation()
 
-        # Add the submit button
-        submitted = st.form_submit_button(
-            "Search", use_container_width=True
-        )
+        # Perform the search and summarize
+        result = search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
-    if submitted:
-        # Perform the search and summarize when the button is clicked
-        st.session_state["user_input_content"] = user_query  # Save user query to session state
-        st.session_state["user_voice_value"] = ""  # Reset session state value
-        search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
-        st.rerun()  # Refresh the app to reflect session state changes
+        # Save the result to session state for persistence
+        st.session_state["search_result"] = result
+
+    # Display the results if available in session state
+    if "search_result" in st.session_state:
+        st.write("### Search Results")
+        st.write(st.session_state["search_result"])
+
+
 with tab_chatbot:
     with st.form("restaurant_query_form"):  # Wrap everything in a form
         user_query = st.text_input("Which restaurant are you looking for?")
