@@ -211,6 +211,8 @@ with tap_search:
     
     # Get user's location
     get_location = get_geolocation()
+
+    st.write(openai.api_key)
     
     if summary_type and store_type:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
