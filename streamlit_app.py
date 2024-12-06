@@ -50,7 +50,9 @@ def fetch_reviews_summary(reviews):
     Reviews:
     {review_texts}
     Keep your Summary under 80 words for each.
-    """    
+    """
+
+    st.write(openai.api_key)
     
     try:
 
