@@ -266,4 +266,4 @@ with tab_chatbot:
         agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
         
         # Run the agent and display the result
-        st.write("Agent answer:", agent_executor.invoke({"input": instruction})["output"])
+        st.write(agent_executor.invoke({"input": instruction})["output"])
