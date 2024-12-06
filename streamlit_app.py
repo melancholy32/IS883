@@ -242,11 +242,8 @@ with tab_chatbot:
         
         User query: {user_query}
         """
-
-        st.write(openai.api_key)
-        st.write(OPENAI_API_KEY)
         
-        chat = ChatOpenAI(openai_api_key=openai.api_key, model="gpt-4o-mini")
+        chat = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4o-mini")
         
         prompt = ChatPromptTemplate.from_messages(
             [
