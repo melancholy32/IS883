@@ -54,6 +54,20 @@ def fetch_reviews_summary(reviews):
 
     Keep your Summary under 80 words for each.
     """
+    response = openai.ChatCompletion.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are an expert in providing summaries."},
+                {"role": "user", "content": prompt}
+            ],
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+    st.write(response)
+
+
+    
     try:
         response = openai.ChatCompletion.create(
             model="gpt-4o-mini",
@@ -65,7 +79,6 @@ def fetch_reviews_summary(reviews):
             stop=None,
             temperature=0.7,
         )
-        st.write(response)
         summary_str = response['choices'][0]['message']['content']
         
 
@@ -212,7 +225,6 @@ with tap_search:
     # Get user's location
     get_location = get_geolocation()
 
-    st.write(openai.api_key)
     
     if summary_type and store_type:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
