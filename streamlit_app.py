@@ -186,6 +186,8 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
 with tab_info:
     st.write("This app is to help you easily find places for your purposes from Google Review🔍. Save some time by using our app!😁")
     st.write(openai.api_key)
+    st.write(OPENAI_API_KEY)
+    st.write(GOOGLE_API_KEY)
     
 
     #store_type = ["🍽️ Restaurant", "🥂 Bar", "☕ Cafe"]
