@@ -188,29 +188,39 @@ with tab_info:
 
 
 with tab_search:
-    store_type = st.selectbox(
-        "I am looking for a ...",
-        ("restaurant", "bar", "cafe"),
-        index=None,
-        placeholder="Please select ...",
-    )
+    # Create a form for inputs and submit button
+    with st.form("search_form"):
+        store_type = st.selectbox(
+            "I am looking for a ...",
+            ("restaurant", "bar", "cafe"),
+            index=None,
+            placeholder="Please select ...",
+        )
 
-    summary_type = st.selectbox(
-        "For my purpose of ...",
-        ("Dating", "Gathering", "Working"),
-        index=None,
-        placeholder="Please select ...",
-    )
+        summary_type = st.selectbox(
+            "For my purpose of ...",
+            ("Dating", "Gathering", "Working"),
+            index=None,
+            placeholder="Please select ...",
+        )
 
-    # Get user query
-    user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
+        # Get user query
+        user_query = st.text_input("(Optional) Enter the name of the place if you're looking for a specific place. (Ex. KFC, Cafe Nero)")
 
-    # Get user's location
-    get_location = get_geolocation()
+        # Get user's location
+        get_location = get_geolocation()
 
-    if summary_type and summary_type:
+        # Add the submit button
+        submitted = st.form_submit_button(
+            "Search", use_container_width=True
+        )
+
+    if submitted:
+        # Perform the search and summarize when the button is clicked
+        st.session_state["user_input_content"] = user_query  # Save user query to session state
+        st.session_state["user_voice_value"] = ""  # Reset session state value
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
-
+        st.rerun()  # Refresh the app to reflect session state changes
 with tab_chatbot:
     with st.form("restaurant_query_form"):  # Wrap everything in a form
         user_query = st.text_input("Which restaurant are you looking for?")
