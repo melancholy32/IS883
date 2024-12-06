@@ -182,7 +182,7 @@ def search_and_summarize_restaurants(query, store_type, summary_type, get_locati
     #st.write(f"Selected month: {store_type[selected_index]}")
 
 
-with tap_chatbot:
+with tap_search:
     store_type = st.selectbox(
         "I am looking for a ...",
         ("restaurant", "bar", "cafe"),
@@ -206,4 +206,4 @@ with tap_chatbot:
     if summary_type and summary_type:
         search_and_summarize_restaurants(user_query, store_type, summary_type, get_location)
 
-#with tap_search:
+#with tap_chatbot:
